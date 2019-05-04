@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Chart from "./visualizations/Chart";
+import RadialChart from "./visualizations/RadialChart";
 
 class App extends Component {
   state = {
@@ -50,6 +51,7 @@ class App extends Component {
         </h1>
         <p>Exercice from FrontEndMaster</p>
         <Chart data={data} />
+        <RadialChart data={data} />
       </div>
     );
   }
