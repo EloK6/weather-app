@@ -33,23 +33,25 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>
-          2017 Temperatures for
-          <select name="city" onChange={this.updateCity}>
-            {[
-              { label: "San Francisco", value: "sf" },
-              { label: "New York", value: "ny" },
-              { label: "Amsterdam", value: "am" }
-            ].map(option => {
-              return (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              );
-            })}
-          </select>
-        </h1>
-        <p>Exercice from FrontEndMaster</p>
+        <div className="text">
+          <h1>
+            2017 Temperatures for
+            <select name="city" onChange={this.updateCity}>
+              {[
+                { label: "San Francisco", value: "sf" },
+                { label: "New York", value: "ny" },
+                { label: "Amsterdam", value: "am" }
+              ].map(option => {
+                return (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                );
+              })}
+            </select>
+          </h1>
+          <p>Exercice from FrontEndMaster</p>
+        </div>
         <Chart data={data} />
         <RadialChart data={data} />
       </div>

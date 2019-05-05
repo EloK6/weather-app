@@ -6,7 +6,8 @@ const height = 650;
 
 class RadialChart extends Component {
   state = {
-    slices: []
+    slices: [],
+    tempAnnotations: []
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -34,7 +35,15 @@ class RadialChart extends Component {
         })
       };
     });
-    return { slices };
+
+    const tempAnnotations = [5, 20, 40, 60, 80].map(temp => {
+      return {
+        r: radiusScale(temp),
+        temp
+      };
+    });
+
+    return { slices, tempAnnotations };
   }
 
   render() {
@@ -43,6 +52,14 @@ class RadialChart extends Component {
         <g transform={`translate(${width / 2}, ${height / 2})`}>
           {this.state.slices.map(d => (
             <path d={d.path} fill={d.fill} />
+          ))}
+          {this.state.tempAnnotations.map((d, i) => (
+            <g key={i}>
+              <circle r={d.r} fill="none" stroke="#999" />
+              <text y={-d.r - 2} textAnchor="middle">
+                {d.temp}℉
+              </text>
+            </g>
           ))}
         </g>
       </svg>
