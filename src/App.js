@@ -6,9 +6,11 @@ import RadialChart from "./visualizations/RadialChart";
 class App extends Component {
   state = {
     temps: {},
+    range: [],
     city: "sf" // city whose temperatures to show
   };
 
+  //Promise
   componentDidMount() {
     Promise.all([
       fetch(`${process.env.PUBLIC_URL || ""}/sf.json`),
@@ -26,6 +28,10 @@ class App extends Component {
 
   updateCity = e => {
     this.setState({ city: e.target.value });
+  };
+
+  updateRange = range => {
+    this.setState({ range });
   };
 
   render() {
@@ -52,8 +58,16 @@ class App extends Component {
           </h1>
           <p>Exercice from FrontEndMaster</p>
         </div>
-        <Chart data={data} />
-        <RadialChart data={data} />
+        <Chart
+          data={data}
+          range={this.state.range}
+          updateRange={this.updateRange}
+        />
+        <RadialChart
+          data={data}
+          range={this.state.range}
+          updateRange={this.updateRange}
+        />
       </div>
     );
   }
