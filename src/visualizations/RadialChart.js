@@ -19,9 +19,10 @@ class RadialChart extends Component {
       .domain([d3.min(data, d => d.low), d3.max(data, d => d.high)])
       .range([0, width / 2]);
 
+    const [minAvg, maxAvg] = d3.extent(data, d => d.avg);
     const colorScale = d3
       .scaleSequential()
-      .domain(d3.extent(data, d => d.avg))
+      .domain([maxAvg, minAvg])
       .interpolator(d3.interpolateRdYlBu);
 
     // get the angle for each slice
