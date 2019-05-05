@@ -63,7 +63,12 @@ class Chart extends Component {
   render() {
     return (
       <div className="Chart">
-        <svg width={width} height={height}>
+        <svg
+          preserveAspectRatio="xMidYMid meet"
+          viewBox={`0 0 ${width} ${height}`}
+          width={width}
+          height={height}
+        >
           {this.state.bars.map(d => (
             <rect x={d.x} y={d.y} width={2} height={d.height} fill={d.fill} />
           ))}
